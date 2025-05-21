@@ -1,21 +1,33 @@
 import streamlit as st
 import pandas as pd
-from PIL import Image
 import plotly.express as px
 import numpy as np
 import os
 
-# Load data directly from the CSV file
-df = pd.read_csv("big4_financial_risk_compliance.csv")
+# Set page config first
+st.set_page_config(page_title="Big 4 Risk & Compliance Dashboard", page_icon=":bar_chart:", layout="wide")
+
+# Load data with optimized settings
+@st.cache_data
+def load_data():
+    return pd.read_csv("big4_financial_risk_compliance.csv")
+
+df = load_data()
 
 blue_theme = ['#0033A0', '#005EB8', '#B7C9E2', '#6C7A89', '#222222']
 
-st.set_page_config(page_title="Big 4 Risk & Compliance Dashboard", page_icon=":bar_chart:", layout="wide")
+# Load and display the image with optimization
+@st.cache_data
+def load_image():
+    try:
+        return "Compliance.png"
+    except:
+        return None
 
-# Load and display the image
-try:
-    st.image("Compliance.png", use_column_width=True)
-except:
+image_path = load_image()
+if image_path:
+    st.image(image_path, use_column_width=True)
+else:
     st.warning("Image not found. Please ensure Compliance.png is in the correct directory.")
 
 st.title("Big 4 Financial Risk & Compliance Dashboard")
