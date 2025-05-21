@@ -8,16 +8,21 @@ import os
 st.set_page_config(page_title="Big 4 Risk & Compliance Dashboard", page_icon=":bar_chart:", layout="wide")
 
 # Load data with optimized settings
-@st.cache_data
+@st.cache_data(ttl=3600)
 def load_data():
-    return pd.read_csv("big4_financial_risk_compliance.csv")
+    df = pd.read_csv("big4_financial_risk_compliance.csv", 
+                     usecols=['Firm_Name', 'Year', 'Industry_Affected', 'AI_Used_for_Auditing',
+                             'Total_Audit_Engagements', 'Compliance_Violations', 'Fraud_Cases_Detected',
+                             'Employee_Workload', 'Total_Revenue_Impact', 'High_Risk_Cases',
+                             'Audit_Effectiveness_Score'])
+    return df
 
 df = load_data()
 
 blue_theme = ['#0033A0', '#005EB8', '#B7C9E2', '#6C7A89', '#222222']
 
 # Load and display the image with optimization
-@st.cache_data
+@st.cache_data(ttl=3600)
 def load_image():
     try:
         return "Compliance.png"
