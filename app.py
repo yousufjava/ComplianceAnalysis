@@ -3,24 +3,21 @@ import pandas as pd
 from PIL import Image
 import plotly.express as px
 import numpy as np
-import kaggle
 import os
 
-kaggle.api.authenticate()
-dataset_name = "atharvasoundankar/big-4-financial-risk-insights-2020-2025"
-kaggle.api.dataset_download_files(dataset_name, path=".", unzip=True)
-
-csv_files = [f for f in os.listdir('.') if f.endswith('.csv')]
-if csv_files:
-    df = pd.read_csv(csv_files[0])
-else:
-    df = pd.read_csv("big4_financial_risk_compliance.csv")
+# Load data directly from the CSV file
+df = pd.read_csv("big4_financial_risk_compliance.csv")
 
 blue_theme = ['#0033A0', '#005EB8', '#B7C9E2', '#6C7A89', '#222222']
 
 st.set_page_config(page_title="Big 4 Risk & Compliance Dashboard", page_icon=":bar_chart:", layout="wide")
 
-st.image("Compliance.png", use_column_width=True)
+# Load and display the image
+try:
+    st.image("Compliance.png", use_column_width=True)
+except:
+    st.warning("Image not found. Please ensure Compliance.png is in the correct directory.")
+
 st.title("Big 4 Financial Risk & Compliance Dashboard")
 
 # Sidebar filters
