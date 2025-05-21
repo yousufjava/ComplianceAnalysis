@@ -1,40 +1,26 @@
 import streamlit as st
 import pandas as pd
+from PIL import Image
 import plotly.express as px
 import numpy as np
+import kaggle
 import os
 
-# Set page config first
-st.set_page_config(page_title="Big 4 Risk & Compliance Dashboard", page_icon=":bar_chart:", layout="wide")
+kaggle.api.authenticate()
+dataset_name = "atharvasoundankar/big-4-financial-risk-insights-2020-2025"
+kaggle.api.dataset_download_files(dataset_name, path=".", unzip=True)
 
-# Load data with optimized settings
-@st.cache_data(ttl=3600)
-def load_data():
-    df = pd.read_csv("big4_financial_risk_compliance.csv", 
-                     usecols=['Firm_Name', 'Year', 'Industry_Affected', 'AI_Used_for_Auditing',
-                             'Total_Audit_Engagements', 'Compliance_Violations', 'Fraud_Cases_Detected',
-                             'Employee_Workload', 'Total_Revenue_Impact', 'High_Risk_Cases',
-                             'Audit_Effectiveness_Score'])
-    return df
-
-df = load_data()
+csv_files = [f for f in os.listdir('.') if f.endswith('.csv')]
+if csv_files:
+    df = pd.read_csv(csv_files[0])
+else:
+    df = pd.read_csv("big4_financial_risk_compliance.csv")
 
 blue_theme = ['#0033A0', '#005EB8', '#B7C9E2', '#6C7A89', '#222222']
 
-# Load and display the image with optimization
-@st.cache_data(ttl=3600)
-def load_image():
-    try:
-        return "Compliance.png"
-    except:
-        return None
+st.set_page_config(page_title="Big 4 Risk & Compliance Dashboard", page_icon=":bar_chart:", layout="wide")
 
-image_path = load_image()
-if image_path:
-    st.image(image_path, use_column_width=True)
-else:
-    st.warning("Image not found. Please ensure Compliance.png is in the correct directory.")
-
+st.image("Compliance.png", use_column_width=True)
 st.title("Big 4 Financial Risk & Compliance Dashboard")
 
 # Sidebar filters
