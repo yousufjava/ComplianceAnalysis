@@ -1,4 +1,5 @@
 # AI in Auditing: Big 4 Analysis & Implementation Guide
+<img width="1470" alt="Screenshot 2025-05-28 at 11 21 10 PM" src="https://github.com/user-attachments/assets/f40bf681-bf2b-422b-b063-9f7c11d020c9" />
 
 ## Overview
 This repository contains a comprehensive analysis of AI implementation across the Big 4 accounting firms (EY, PwC, Deloitte, KPMG) and its impact on auditing practices. The project combines data analysis, visualization, and strategic insights to understand how AI is transforming the auditing landscape.
