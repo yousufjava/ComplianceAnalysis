@@ -20,7 +20,6 @@ blue_theme = ['#0033A0', '#005EB8', '#B7C9E2', '#6C7A89', '#222222']
 
 st.set_page_config(page_title="Big 4 Risk & Compliance Dashboard", page_icon=":bar_chart:", layout="wide")
 
-st.image("Compliance.png", use_column_width=True)
 st.title("Big 4 Financial Risk & Compliance Dashboard")
 
 # Sidebar filters
