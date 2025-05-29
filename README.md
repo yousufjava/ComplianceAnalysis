@@ -24,8 +24,7 @@ pip install -r requirements.txt
 ### Running the Dashboard
 1. Start the application:
 ```bash
-python app.py
-```
+streamlit run app.py
 
 2. Open your web browser and navigate to:
 ```
